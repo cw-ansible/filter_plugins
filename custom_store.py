@@ -3,7 +3,7 @@
 
 # Copyright © 2014 Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 # Created: 2015-02-10
-# Last changed: 2015-04-03 17:01:44
+# Last changed: 2015-06-19 12:54:43
 #
 # This program is free software. It comes without any warranty, to
 # the extent permitted by applicable law. You can redistribute it
@@ -37,7 +37,7 @@ Example:
     if hostvars is None:
         return file
     for p in [ hostvars['inventory_hostname_short'] ] + hostvars['group_names'] + [ 'all' ]:
-        ret = (hostvars['custom_path'] % ('store', p)) + file
+        ret = os.path.normpath((hostvars['custom_path'] % ('store', p)) + file)
         if os.path.exists(ret):
             return ret
     return file
